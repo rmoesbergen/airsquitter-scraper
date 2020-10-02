@@ -1,0 +1,15 @@
+[Unit]
+Description=AirSquitter Scraper
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/airsquitter-scraper.py
+KillMode=process
+Restart=on-failure
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
+Alias=airsquitter-scraper.service
