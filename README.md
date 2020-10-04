@@ -22,7 +22,7 @@ ssh pi@<ip adres pi>
 ```bash
 curl https://raw.githubusercontent.com/rmoesbergen/airsquitter-scraper/master/install.sh | bash
 ```
-- Pas in /home/pi het bestand 'settings.json' naar wens aan. Zie hieronder voor uitleg van alle instellingen.
+- Pas in /home/pi het bestand 'airsquitter-settings.json' naar wens aan. Zie hieronder voor uitleg van alle instellingen.
 
 - Start het programma als service:
 ```bash
@@ -44,7 +44,7 @@ zal deze niet worden geregistreerd in het CSV bestand.
 - csv_file: De lokatie van het CSV bestand waarin alle vluchten die voldoen aan alle criteria worden geschreven.
 De bestandsnaam kan "datum formatterings tekens" bevatten om periodiek een nieuw bestand te schrijven. Voor een overzicht van te gebruiken
 formatteringstekens, zie: https://strftime.org/
-In het standaard voorbeeld wordt "flights-%m.csv" gebruikt, waarmee elke maand een nieuw bestand wordt geschreven, met in de bestandsnaam
+In het standaard voorbeeld wordt "airsquitter-flights-%m.csv" gebruikt, waarmee elke maand een nieuw bestand wordt geschreven, met in de bestandsnaam
 het maandnummer, uitgevuld met een '0'.
 - history_file: De lokatie van het bestand waarin de vluchten die reeds 'gezien' zijn wordt bewaard. Dit bestand wordt bijgehouden om dubbele logging
 van vluchten te voorkomen. Het formaat is in JSON en bevat alle icao24 codes en een timestamp van vluchten.
