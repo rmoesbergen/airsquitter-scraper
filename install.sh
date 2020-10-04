@@ -16,4 +16,3 @@ sudo mv /home/pi/airsquitter-scraper.service /etc/systemd/system/airsquitter-scr
 sudo chown root:root /etc/systemd/system/airsquitter-scraper.service
 sudo systemctl daemon-reload
 sudo systemctl enable airsquitter-scraper.service
-sudo systemctl start airsquitter-scraper.service
