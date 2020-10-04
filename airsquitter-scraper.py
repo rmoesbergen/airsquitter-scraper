@@ -5,14 +5,15 @@ import requests
 import json
 import csv
 import pytz
+import argparse
 from os import path
 from datetime import datetime
 from time import sleep
 
 
 class Settings:
-    def __init__(self):
-        with open("airsquitter-settings.json", "r") as settings_file:
+    def __init__(self, filename="airsquitter-settings.json"):
+        with open(filename, "r") as settings_file:
             self.settings = json.load(settings_file)
 
     def __getattr__(self, item):
@@ -120,13 +121,14 @@ class FileLogger:
         self.filename = filename
 
     def log(self, text):
-        with open(self.filename, "a+") as logfile:
-            logfile.write(text + "\n")
+        if self.filename is not None and self.filename != "":
+            with open(self.filename, "a+") as logfile:
+                logfile.write(text + "\n")
 
 
 class Scraper:
-    def __init__(self):
-        self.settings = Settings()
+    def __init__(self, configfile):
+        self.settings = Settings(configfile)
         self.log = FileLogger(self.settings.log_file)
         self.csv = CsvLogger(self.settings.csv_file)
         self.dedup = DeDuplicator(self.settings.history_file, self.settings.keep_history)
@@ -144,19 +146,18 @@ class Scraper:
         for flight_data in flights:
             flight = Flight(flight_data)
             # Check lat/lon
-            if flight.lat is None or flight.lat >= self.settings.lamax or flight.lat <= self.settings.lamin:
+            if flight.lat is None or flight.lat > self.settings.lamax or flight.lat < self.settings.lamin:
                 continue
-            if flight.lon is None or flight.lon >= self.settings.lomax or flight.lon <= self.settings.lomin:
+            if flight.lon is None or flight.lon > self.settings.lomax or flight.lon < self.settings.lomin:
                 continue
 
             # Check and filter altitude
             if flight.altitude is None:
                 continue
 
-            if flight.altitude is not None:
-                if flight.altitude > self.settings.max_geo_altitude:
-                    # Flight is above maximum altitude > skip this record
-                    continue
+            if flight.altitude > self.settings.max_geo_altitude:
+                # Flight is above maximum altitude > skip this record
+                continue
 
             # If flight is on the ground -> skip
             if flight.gda == 'G':
@@ -178,5 +179,9 @@ class Scraper:
 
 
 if __name__ == '__main__':
-    scraper = Scraper()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--configfile', help='Path to configuration JSON file', default='airsquitter-settings.json')
+    config = parser.parse_args()
+
+    scraper = Scraper(config.configfile)
     scraper.run()

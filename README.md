@@ -1,6 +1,9 @@
 ## AirSquitter Scraper
 Dit programma houdt vluchtgegevens bij door het periodiek bevragen van een AirSquitter device
 
+De velden in de CSV file zijn hier beschreven:
+https://wiki.jetvision.de/wiki/Radarcape:Software_Features
+
 ### Installatie instructies
 Het programma is gemaakt om op een Raspberry PI (of soortgelijke mini-computer) te draaien.
 Alvorens het te installeren, moet eerst de Raspberry van een OS + connectiviteit worden voorzien.

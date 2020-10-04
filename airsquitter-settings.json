@@ -1,0 +1,13 @@
+{
+  "api_url": "http://air-squitter/aircraftlist.json",
+  "lamin": 50.537535,
+  "lomin": 5.323190,
+  "lamax": 51.2140,
+  "lomax": 6.1767,
+  "poll_interval": 15,
+  "max_geo_altitude": 1000,
+  "log_file": "/home/pi/airsquitter-debug.log",
+  "csv_file": "/home/pi/airsquitter-flights-%m.csv",
+  "history_file": "/home/pi/airsquitter-history.json",
+  "keep_history": 1800
+}
