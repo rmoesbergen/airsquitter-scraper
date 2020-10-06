@@ -147,30 +147,38 @@ class Scraper:
             flight = Flight(flight_data)
             # Check lat/lon
             if flight.lat is None or flight.lat > self.settings.lamax or flight.lat < self.settings.lamin:
+                self.log.log(f"Skipping {flight.hex}: no latitude match")
                 continue
             if flight.lon is None or flight.lon > self.settings.lomax or flight.lon < self.settings.lomin:
+                self.log.log(f"Skipping {flight.hex}: no longitude match")
                 continue
 
             # Check and filter altitude
             if flight.altitude is None:
+                self.log.log(f"Skipping {flight.hex}: altitude is None")
                 continue
 
             if flight.altitude > self.settings.max_geo_altitude:
                 # Flight is above maximum altitude > skip this record
+                self.log.log(f"Skipping {flight.hex}: altitude is above maximum {self.settings.max_geo_altitude}")
                 continue
 
             # If flight is on the ground -> skip
             if flight.gda == 'G':
+                self.log.log(f"Skipping {flight.hex}: aircraft is on the ground")
                 continue
 
             if flight.fli is None or flight.fli == "":
                 # Flight has no callsign yet, skip this record for now
+                self.log.log(f"Skipping {flight.hex}: aircraft has no or empty callsign")
                 continue
 
             # Flight should be logged, but only not previously logged
             if not self.dedup.have_seen(flight):
                 self.csv.log(flight)
                 self.dedup.remember(flight)
+            else:
+                self.log.log(f"Skipping {flight.hex}: aircraft was previously logged")
 
     def run(self):
         while True:
