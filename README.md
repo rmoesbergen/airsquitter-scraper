@@ -33,7 +33,7 @@ Het programma wordt op de achtergrond gestart en zal de logfiles en CSV gaan gen
 herstart van de raspberry pi zal het programma automatisch weer gestart worden.
 
 ### Instellingen
-Alle instellingen bevinden zich in een bestand 'settings.json'. De instellingen zijn als volgt:
+Alle instellingen bevinden zich in een bestand 'airsquitter-settings.json'. De instellingen zijn als volgt:
 
 - api_url: De lokatie van de AirSquitter aircraflist.json file.
 - lamin, lamax, lomin, lomax: Deze 4 parameters geven het geografisch gebied aan waarop gefilterd moet worden bij het ophalen van vluchten.
@@ -51,3 +51,4 @@ van vluchten te voorkomen. Het formaat is in JSON en bevat alle icao24 codes en 
 Bij het herstarten van het programma zal deze historie weer worden ingelezen, zodat vluchten nooit dubbel worden geschreven in de CSV file.
 - keep_history: Hoe lang het programma de vluchten 'onthoudt' in de history file, om te ontdubbelen, in seconden.
 Als een vlucht binnen dit interval 2 of meer keer wordt 'gezien', zal er maar 1 record worden geschreven in de CSV file.
+- min_speed: De minimale snelheid (in km/h) van een vlucht. Een vlucht langzamer dan deze snelheid wordt niet gelogged.

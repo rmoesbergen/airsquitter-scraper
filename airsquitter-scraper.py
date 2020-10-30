@@ -173,6 +173,12 @@ class Scraper:
                 self.log.log(f"Skipping {flight.hex}: aircraft has no or empty callsign")
                 continue
 
+            # Check and filter speed
+            if flight.spd < self.settings.min_speed:
+                # Flight is in the air, but speed is too low, probably on the ground
+                self.log.log(f"Skipping {flight.hex}: aircraft speed is lower than configured minimum")
+                continue
+
             # Flight should be logged, but only not previously logged
             if not self.dedup.have_seen(flight):
                 self.csv.log(flight)
