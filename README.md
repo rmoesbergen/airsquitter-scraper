@@ -40,6 +40,7 @@ Alle instellingen bevinden zich in een bestand 'airsquitter-settings.json'. De i
 - poll_interval: Het interval waarmee het device wordt bevraagd, in seconden.
 - max_geo_altitude: De maximale hoogte van een vlucht voor registratie in het CSV bestand, in meters. Als de vlucht boven deze grens is,
 zal deze niet worden geregistreerd in het CSV bestand.
+- min_geo_altitude: De minimale hoogte van een vlucht voor registratie in het CSV bestand, in meters.
 - log_file: De lokatie van een (debug) logbestand waarin alle responses van de API 1 op 1 ongefilterd worden gelogged.
 - csv_file: De lokatie van het CSV bestand waarin alle vluchten die voldoen aan alle criteria worden geschreven.
 De bestandsnaam kan "datum formatterings tekens" bevatten om periodiek een nieuw bestand te schrijven. Voor een overzicht van te gebruiken

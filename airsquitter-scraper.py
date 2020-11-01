@@ -158,9 +158,9 @@ class Scraper:
                 self.log.log(f"Skipping {flight.hex}: altitude is None")
                 continue
 
-            if flight.altitude > self.settings.max_geo_altitude:
+            if flight.altitude > self.settings.max_geo_altitude or flight.altitude < self.settings.min_geo_altitude:
                 # Flight is above maximum altitude > skip this record
-                self.log.log(f"Skipping {flight.hex}: altitude is above maximum {self.settings.max_geo_altitude}")
+                self.log.log(f"Skipping {flight.hex}: altitude {flight.altitude} is outside configured range")
                 continue
 
             # If flight is on the ground -> skip

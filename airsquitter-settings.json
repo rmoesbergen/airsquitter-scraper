@@ -6,6 +6,7 @@
   "lomax": 6.1767,
   "poll_interval": 15,
   "max_geo_altitude": 1000,
+  "min_geo_altitude": 100,
   "min_speed": 120,
   "log_file": "/home/pi/airsquitter-debug.log",
   "csv_file": "/home/pi/airsquitter-flights-%m.csv",
