@@ -174,7 +174,7 @@ class Scraper:
                 continue
 
             # Check and filter speed
-            if flight.spd < self.settings.min_speed:
+            if flight.spd is None or flight.spd < self.settings.min_speed:
                 # Flight is in the air, but speed is too low, probably on the ground
                 self.log.log(f"Skipping {flight.hex}: aircraft speed is lower than configured minimum")
                 continue
