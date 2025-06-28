@@ -6,7 +6,8 @@ After=network.target
 WorkingDirectory=/home/pi
 ExecStart=/usr/bin/python3 /home/pi/airsquitter-scraper.py
 KillMode=process
-Restart=on-failure
+Restart=always
+RestartSec=3
 User=pi
 Group=pi
 
